@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -22,6 +23,7 @@ export default function Home() {
     const [loading, setLoading] = useState(true)
     const [stories, setStories] = useState([]);
     const [page, setPage] = useState(1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getData(page)
@@ -86,10 +88,10 @@ export default function Home() {
                                     <Typography variant="body2" color="text.secondary" gutterBottom>
                                     {story.points} pointy by
                                     </Typography>
-                                    <Button size="small" color='inherit'><Link color="inherit" underline="none" href={`/profile/${story.author}`}>{story.author}</Link></Button> 
+                                    <Button size="small" color='inherit'><Link color="inherit" underline="none" onClick={()=> navigate(`/profile/${story.author}`)}>{story.author}</Link></Button> 
                                     <Typography variant="body2" color="text.secondary" gutterBottom>{timeSince(story.created_at)}  |
                                     </Typography>
-                                    <Button size="small" color='inherit' ><Link color="inherit" underline="none" href={`/comments/${story.objectID}`}>{story.num_comments} Comments</Link></Button> 
+                                    <Button size="small" color='inherit' ><Link color="inherit" underline="none" onClick={()=> navigate(`/comments/${story.objectID}`)}>{story.num_comments} Comments</Link></Button> 
                                 </CardActions>
                             </Card>
                             <br/>
