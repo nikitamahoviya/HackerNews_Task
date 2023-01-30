@@ -40,7 +40,7 @@ export default function Home() {
         });
     };
 
-    const changePage = (value) => {
+    const changePage = (e, value) => {
         setPage(value);
         window.scrollTo(0, 0);
     };
